@@ -279,15 +279,18 @@ body.choice-mode {
     box-shadow: 0 8px 24px rgba(136, 14, 79, 0.2);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
-    padding: 20px 26px;
-    max-width: min(760px, 90vw);
+    padding: clamp(14px, 3vw, 24px) clamp(18px, 4vw, 32px);
+    width: fit-content;
+    max-width: min(96vw, 1200px);
 }
 
 .success-screen h1 {
     color: #c2185b;
-    font-size: 4em;
+    font-size: clamp(1.6rem, 7vw, 4rem);
     margin: 0 0 16px;
     font-family: 'Brush Script MT', cursive;
+    white-space: nowrap;
+    line-height: 1.1;
     /* More romantic font */
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
     animation: heartbeat 1.5s infinite;
