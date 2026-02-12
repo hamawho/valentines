@@ -33,7 +33,7 @@
         <div class="captcha-modal hidden" id="captcha-modal">
             <div class="modal-header" id="modal-header">
                 <h3>Select all images with</h3>
-                <h1 id="instruction-text">traffic lights</h1>
+                <h1 id="instruction-text">your valentine</h1>
                 <p>Click verify once there are none left.</p>
             </div>
 
@@ -52,10 +52,32 @@
             </div>
         </div>
 
-        <!-- Step 3: Success -->
+
+        <!-- Step 3: Date Choice -->
+        <div class="choice-screen hidden" id="choice-screen">
+            <h1>Pick where you want to go!</h1>
+            <div class="choice-grid">
+                <button class="choice-card" data-choice="1" type="button">
+                    <img src="assets/choice1.png" alt="Choice 1 image placeholder">
+                    <h2>Picnic in the park</h2>
+                </button>
+                <button class="choice-card" data-choice="2" type="button">
+                    <img src="assets/choice2.png" alt="Choice 2 image placeholder">
+                    <h2>Dinner date</h2>
+                </button>
+                <button class="choice-card" data-choice="3" type="button">
+                    <img src="assets/choice3.png" alt="Choice 3 image placeholder">
+                    <h2>Movie night</h2>
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 4: Success -->
         <div class="success-screen hidden" id="success-screen">
-            <h1>❤️ Happy Valentine's Day! ❤️</h1>
-            <p>You have successfully confirmed that you possess a heart.</p>
+            <div class="success-content">
+                <h1>❤️ Happy Valentine's Day! ❤️</h1>
+                <p>You have successfully confirmed that you possess a heart.</p>
+            </div>
         </div>
 
     </div>
