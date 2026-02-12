@@ -1,0 +1,355 @@
+/* Global Resets */
+:root {
+    --captcha-blue: #4A90E2;
+    --captcha-bg: #f9f9f9;
+    --valentine-pink: #ff6b81;
+    --valentine-bg: #ffe4e8;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Step 1: Checkbox --- */
+.captcha-box {
+    background: #fff;
+    border: 1px solid #d3d3d3;
+    border-radius: 3px;
+    width: 300px;
+    height: 74px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.08);
+
+    position: absolute;
+    /* Centered initially */
+    z-index: 10;
+    transition: opacity 0.3s;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #c1c1c1;
+    border-radius: 2px;
+    margin-right: 12px;
+    cursor: pointer;
+    background: #fff;
+    transition: all 0.2s;
+}
+
+.checkbox:hover {
+    border-color: #b2b2b2;
+}
+
+.checkbox.loading {
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    border-top: 2px solid var(--captcha-blue);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.checkbox-container label {
+    font-size: 14px;
+    color: #000;
+}
+
+.captcha-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 10px;
+    color: #555;
+}
+
+.captcha-logo img {
+    width: 32px;
+    margin-bottom: 2px;
+}
+
+.privacy-links {
+    font-size: 8px;
+    color: #999;
+    margin-top: 2px;
+}
+
+/* --- Step 2: The Modal Grid --- */
+.captcha-modal {
+    background: #fff;
+    width: 400px;
+    /* Slightly larger than standard for effect */
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 20;
+    opacity: 0;
+    transform: scale(0.95);
+    animation: popIn 0.3s forwards;
+}
+
+@keyframes popIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Transitions for the Valentine Reveal */
+.captcha-modal.valentine-mode {
+    border: 2px solid var(--valentine-pink);
+    box-shadow: 0 0 20px rgba(255, 107, 129, 0.4);
+    transition: all 0.5s ease;
+}
+
+.modal-header {
+    background: var(--captcha-blue);
+    color: #fff;
+    padding: 20px 16px;
+    margin-bottom: 8px;
+    transition: background 0.5s;
+}
+
+.valentine-mode .modal-header {
+    background: var(--valentine-pink);
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.modal-header h1 {
+    margin: 4px 0;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.modal-header p {
+    margin: 0;
+    font-size: 13px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 8px;
+}
+
+.tile {
+    width: 100%;
+    aspect-ratio: 1;
+    background-size: 300% 300%;
+    /* Slicing the 3x3 grid image */
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.1s;
+}
+
+.tile:active {
+    transform: scale(0.98);
+}
+
+/* Selection Ring */
+.tile.selected::after {
+    content: '✓';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background: var(--captcha-blue);
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #fff;
+}
+
+.valentine-mode .tile.selected::after {
+    background: var(--valentine-pink);
+    content: '❤️';
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-top: 1px solid #ececec;
+}
+
+.icons {
+    color: #777;
+    font-size: 18px;
+    letter-spacing: 8px;
+    cursor: not-allowed;
+}
+
+.verify-btn {
+    background: var(--captcha-blue);
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    font-weight: bold;
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    transition: background 0.3s;
+}
+
+.verify-btn:disabled {
+    background: #ccc;
+    cursor: default;
+}
+
+.valentine-mode .verify-btn {
+    background: var(--valentine-pink);
+}
+
+/* --- Step 3: Success --- */
+.success-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ff9597;
+    background-image: url('assets/poppies.png');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: 100% auto;
+    /* Stretch width, keep aspect ratio */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 1s ease;
+    z-index: 100;
+    /* Ensure on top */
+}
+
+.success-screen h1 {
+    color: #c2185b;
+    font-size: 4em;
+    margin-bottom: 20px;
+    font-family: 'Brush Script MT', cursive;
+    /* More romantic font */
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.1);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.1);
+    }
+
+    60% {
+        transform: scale(1);
+    }
+}
+
+.success-screen p {
+    color: #880e4f;
+    font-size: 1.5em;
+    font-weight: 500;
+    max-width: 80%;
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading Bubbles for Button */
+.loading-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    margin: 0 3px;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+}
