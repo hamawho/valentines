@@ -87,8 +87,8 @@ function toggleTile(tile) {
 
 verifyBtn.addEventListener('click', () => {
     if (currentRound === 2) {
-        // Success!
         captchaModal.classList.add('hidden');
+        document.body.classList.add('choice-mode');
         choiceScreen.classList.remove('hidden');
     }
 });
@@ -122,6 +122,7 @@ function launchConfetti() {
 choiceCards.forEach((card) => {
     card.addEventListener('click', () => {
         choiceScreen.classList.add('hidden');
+        document.body.classList.remove('choice-mode');
         document.getElementById('success-screen').classList.remove('hidden');
         launchConfetti();
     });
