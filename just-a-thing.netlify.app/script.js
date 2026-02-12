@@ -7,6 +7,7 @@ const headerTitle = document.getElementById('instruction-text');
 const modalHeader = document.getElementById('modal-header');
 const choiceScreen = document.getElementById('choice-screen');
 const choiceCards = document.querySelectorAll('.choice-card');
+const datePlanText = document.getElementById('date-plan-text');
 
 // State
 let currentRound = 0; // 0 = idle, 2 = valentine
@@ -121,6 +122,9 @@ function launchConfetti() {
 
 choiceCards.forEach((card) => {
     card.addEventListener('click', () => {
+        const pickedChoice = card.querySelector('h2')?.innerText || 'our date';
+        datePlanText.innerText = `It's a date! See you for ${pickedChoice} at 8:00 PM.`;
+
         choiceScreen.classList.add('hidden');
         document.body.classList.remove('choice-mode');
         document.getElementById('success-screen').classList.remove('hidden');
