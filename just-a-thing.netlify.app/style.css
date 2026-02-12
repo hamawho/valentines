@@ -272,11 +272,25 @@ body.choice-mode {
     /* Ensure on top */
 }
 
+.success-content {
+    background: rgba(255, 255, 255, 0.42);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(136, 14, 79, 0.2);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    padding: clamp(14px, 3vw, 24px) clamp(18px, 4vw, 32px);
+    width: fit-content;
+    max-width: min(96vw, 1200px);
+}
+
 .success-screen h1 {
     color: #c2185b;
-    font-size: 4em;
-    margin-bottom: 20px;
+    font-size: clamp(1.6rem, 7vw, 4rem);
+    margin: 0 0 16px;
     font-family: 'Brush Script MT', cursive;
+    white-space: nowrap;
+    line-height: 1.1;
     /* More romantic font */
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
     animation: heartbeat 1.5s infinite;
@@ -308,7 +322,8 @@ body.choice-mode {
     color: #880e4f;
     font-size: 1.5em;
     font-weight: 500;
-    max-width: 80%;
+    max-width: 100%;
+    margin: 0;
 }
 
 
