@@ -23,7 +23,7 @@ body {
 
 body.choice-mode {
     background-color: #ffdbe7;
-    background-image: linear-gradient(rgba(255, 245, 250, 0), rgba(255, 245, 250, 0)), url('assets/bg2.png');
+    background-image: linear-gradient(rgba(255, 245, 250, 0.2), rgba(255, 245, 250, 0.2)), url('assets/bg2.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -256,12 +256,13 @@ body.choice-mode {
     left: 0;
     width: 100vw;
     height: 100vh;
+    min-height: 100dvh;
     background-color: #ff9597;
     background-image: url('assets/poppies.png');
     background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: 100% auto;
-    /* Stretch width, keep aspect ratio */
+    background-position: center;
+    background-size: cover;
+    /* Fill entire viewport on all screen sizes */
     display: flex;
     flex-direction: column;
     justify-content: center;
