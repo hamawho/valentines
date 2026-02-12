@@ -7,11 +7,8 @@ const headerTitle = document.getElementById('instruction-text');
 const modalHeader = document.getElementById('modal-header');
 
 // State
-// State
-let currentRound = 0; // 0 = idle, 1 = traffic lights, 2 = valentine
+let currentRound = 0; // 0 = idle, 2 = valentine
 let selectedTiles = new Set();
-const TRAFFIC_LIGHT_URL = 'assets/traffic-light.png';
-// Round 2 now uses 9 separate images
 const VALENTINE_IMAGES = [
     'assets/valentine-1.png', 'assets/valentine-2.png', 'assets/valentine-3.png',
     'assets/valentine-4.png', 'assets/valentine-5.png', 'assets/valentine-6.png',
@@ -27,29 +24,16 @@ checkbox.addEventListener('click', () => {
     setTimeout(() => {
         captchaBox.classList.add('hidden');
         captchaModal.classList.remove('hidden');
-        startRound1();
+        startRound2();
     }, 1000); // 1.5s fake load
 });
 
-// 2. Round 1: Traffic Lights (The Bore)
-function startRound1() {
-    currentRound = 1;
-    headerTitle.innerText = "traffic lights";
-    setupGrid(TRAFFIC_LIGHT_URL, true); // true = sliced grid
-}
-
-// 3. Round 2: Valentine (The Reveal)
+// 2. Valentine round (The Reveal)
 function startRound2() {
     currentRound = 2;
     captchaModal.classList.add('valentine-mode');
 
-    // Animate Text Change check
-    headerTitle.style.opacity = 0;
-    setTimeout(() => {
-        headerTitle.innerText = "your valentine";
-        headerTitle.style.opacity = 1;
-    }, 200);
-
+    headerTitle.innerText = "your valentine";
     setupGrid(VALENTINE_IMAGES, false); // false = use array
 }
 
@@ -97,26 +81,10 @@ function toggleTile(tile) {
     // Enable verify if at least 1 is selected
     verifyBtn.disabled = selectedTiles.size === 0;
 
-    // Secret trigger for Round 2: Auto-verify if they click enough? 
-    // Nah, stick to manual Verify button click.
 }
 
 verifyBtn.addEventListener('click', () => {
-    if (currentRound === 1) {
-        // Show loading bubbles
-        verifyBtn.innerHTML = `
-            <div class="loading-dots">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-            </div>
-        `;
-
-        setTimeout(() => {
-            verifyBtn.innerHTML = "VERIFY";
-            startRound2();
-        }, 1500); // 1.5s delay for effect
-    } else if (currentRound === 2) {
+    if (currentRound === 2) {
         // Success!
         captchaModal.classList.add('hidden');
         document.getElementById('success-screen').classList.remove('hidden');
