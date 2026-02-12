@@ -5,6 +5,8 @@ const grid = document.getElementById('grid');
 const verifyBtn = document.getElementById('verify-btn');
 const headerTitle = document.getElementById('instruction-text');
 const modalHeader = document.getElementById('modal-header');
+const choiceScreen = document.getElementById('choice-screen');
+const choiceCards = document.querySelectorAll('.choice-card');
 
 // State
 let currentRound = 0; // 0 = idle, 2 = valentine
@@ -87,8 +89,7 @@ verifyBtn.addEventListener('click', () => {
     if (currentRound === 2) {
         // Success!
         captchaModal.classList.add('hidden');
-        document.getElementById('success-screen').classList.remove('hidden');
-        launchConfetti();
+        choiceScreen.classList.remove('hidden');
     }
 });
 
@@ -116,3 +117,12 @@ function launchConfetti() {
     `;
     document.head.appendChild(style);
 }
+
+
+choiceCards.forEach((card) => {
+    card.addEventListener('click', () => {
+        choiceScreen.classList.add('hidden');
+        document.getElementById('success-screen').classList.remove('hidden');
+        launchConfetti();
+    });
+});

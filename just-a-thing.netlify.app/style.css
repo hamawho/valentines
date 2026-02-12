@@ -353,3 +353,56 @@ body {
         transform: scale(1);
     }
 }
+
+.choice-screen {
+    width: min(920px, 95vw);
+    background: #fff;
+    border: 2px solid var(--valentine-pink);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.choice-screen h1 {
+    margin: 0 0 20px;
+    color: #d6336c;
+    text-align: center;
+}
+
+.choice-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.choice-card {
+    border: 2px solid #ffd1de;
+    border-radius: 10px;
+    background: #fff;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.choice-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(214, 51, 108, 0.18);
+}
+
+.choice-card img {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+}
+
+.choice-card h2 {
+    font-size: 1.05rem;
+    color: #7a1f45;
+    margin: 10px 0 4px;
+}
+
+@media (max-width: 900px) {
+    .choice-grid {
+        grid-template-columns: 1fr;
+    }
+}
