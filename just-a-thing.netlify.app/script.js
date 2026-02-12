@@ -13,9 +13,9 @@ const datePlanText = document.getElementById('date-plan-text');
 let currentRound = 0; // 0 = idle, 2 = valentine
 let selectedTiles = new Set();
 const VALENTINE_IMAGES = [
-    'assets/valentine-1.png', 'assets/valentine-2.png', 'assets/valentine-3.png',
-    'assets/valentine-4.png', 'assets/valentine-5.png', 'assets/valentine-6.png',
-    'assets/valentine-7.png', 'assets/valentine-8.png', 'assets/valentine-9.png'
+    'assets/valentine-1.jpg', 'assets/valentine-2.jpg', 'assets/valentine-3.jpg',
+    'assets/valentine-4.jpg', 'assets/valentine-5.png', 'assets/valentine-6.jpg',
+    'assets/valentine-7.jpg', 'assets/valentine-8.webp', 'assets/valentine-9.jpg'
 ];
 
 // 1. Click Checkbox
