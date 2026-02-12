@@ -87,6 +87,7 @@ function toggleTile(tile) {
 
 verifyBtn.addEventListener('click', () => {
     if (currentRound === 2) {
+        // Success!
         captchaModal.classList.add('hidden');
         choiceScreen.classList.remove('hidden');
     }
